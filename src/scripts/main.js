@@ -3,7 +3,7 @@
 const tbody = document.querySelector('tbody');
 const tbodyArr = Array.from(tbody.rows);
 
-function convetString(str) {
+function convertString(str) {
   return parseFloat(str.replace(/[$,]/g, ''));
 }
 
@@ -42,17 +42,15 @@ const thead = Array.from(document.querySelectorAll('thead th'));
 
 thead.forEach((th) => {
   th.addEventListener('click', (e) => {
-    if (e.target.innerText === 'Name') {
-      const employees = getEmployees();
+    const employees = getEmployees();
 
+    if (e.target.innerText === 'Name') {
       const sortedEmp = employees.sort((a, b) => a.name.localeCompare(b.name));
 
       orderTable(sortedEmp);
     }
 
     if (e.target.innerText === 'Position') {
-      const employees = getEmployees();
-
       const sortedEmp = employees.sort((a, b) => {
         return a.position.localeCompare(b.position);
       });
@@ -61,18 +59,14 @@ thead.forEach((th) => {
     }
 
     if (e.target.innerText === 'Age') {
-      const employees = getEmployees();
-
       const sortedEmp = employees.sort((a, b) => a.age - b.age);
 
       orderTable(sortedEmp);
     }
 
     if (e.target.innerText === 'Salary') {
-      const employees = getEmployees();
-
       const sortedEmp = employees.sort((a, b) => {
-        return convetString(a.salary) - convetString(b.salary);
+        return convertString(a.salary) - convertString(b.salary);
       });
 
       orderTable(sortedEmp);
